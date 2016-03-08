@@ -1,0 +1,6 @@
+language: ruby
+gemfile:
+  - Gemfile
+rvm:
+  - 2.2
+script: bundle exec rake
