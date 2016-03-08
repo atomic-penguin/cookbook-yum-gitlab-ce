@@ -2,7 +2,7 @@
 # Cookbook Name:: yum-gitlab-ce
 # Spec:: default
 #
-# Copyright 2016 The Authors
+# Copyright 2016 Eric G. Wolfe
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,15 +19,39 @@
 
 require 'spec_helper'
 
-describe 'yum-gitlab-ce::default' do
-  context 'When all attributes are default, on an unspecified platform' do
+shared_examples 'rhel' do |platform, version|
+  context "on #{platform} #{version}" do
     let(:chef_run) do
-      runner = ChefSpec::ServerRunner.new
+      runner = ChefSpec::SoloRunner.new(step_into: ['yum_repository'],
+					platform: platform,
+					version: version)
       runner.converge(described_recipe)
     end
 
     it 'converges successfully' do
       expect { chef_run }.to_not raise_error
+    end
+
+    it 'creates gitlab_gitlab-ce yum repository' do
+      expect(chef_run).to create_yum_repository('gitlab_gitlab-ce')
+    end
+
+    it 'renders repo file with packages.gitlab.com baseurl' do
+      expect(chef_run).to render_file('/etc/yum.repos.d/gitlab_gitlab-ce.repo').with_content(
+	'baseurl=https://packages.gitlab.com/gitlab/gitlab-ce/el/$releasever/$basearch'
+      )
+    end
+  end
+end
+
+describe 'yum-gitlab-ce::default' do
+  platforms = {
+    'centos' => [6.7, 7.0]
+  }
+
+  platforms.each do |platform, versions|
+    versions.each do |version|
+      it_behaves_like 'rhel', platform, version
     end
   end
 end
