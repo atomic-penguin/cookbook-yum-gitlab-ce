@@ -1,3 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'chef-dk'
+gem 'berkshelf'
+gem 'chefspec'
+gem 'foodcritic'
+gem 'rubocop'
