@@ -23,7 +23,7 @@ Attributes
 ----------
 The following are overridable attributes, in the `yum['gitlab-ce']` namespace.
 
-#### yum-corporate::default
+#### yum-gitlab-ce::default
 
 <table>
   <tr>
