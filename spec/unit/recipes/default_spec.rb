@@ -16,15 +16,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 require 'spec_helper'
 
 shared_examples 'rhel' do |platform, version|
   context "on #{platform} #{version}" do
     let(:chef_run) do
       runner = ChefSpec::SoloRunner.new(step_into: ['yum_repository'],
-					platform: platform,
-					version: version)
+                                        platform: platform,
+                                        version: version)
       runner.converge(described_recipe)
     end
 
@@ -38,7 +37,7 @@ shared_examples 'rhel' do |platform, version|
 
     it 'renders repo file with packages.gitlab.com baseurl' do
       expect(chef_run).to render_file('/etc/yum.repos.d/gitlab_gitlab-ce.repo').with_content(
-	'baseurl=https://packages.gitlab.com/gitlab/gitlab-ce/el/$releasever/$basearch'
+        'baseurl=https://packages.gitlab.com/gitlab/gitlab-ce/el/$releasever/$basearch'
       )
     end
   end

@@ -6,7 +6,7 @@ describe 'yum-gitlab-ce::default' do
       it { should be_file }
       it { should exist }
       its(:content) do
-	should match %r{baseurl=https://packages\.gitlab\.com/gitlab/gitlab-ce/el/\$releasever/\$basearch}
+        should match %r{baseurl=https://packages\.gitlab\.com/gitlab/gitlab-ce/el/\$releasever/\$basearch}
       end
     end
   else
