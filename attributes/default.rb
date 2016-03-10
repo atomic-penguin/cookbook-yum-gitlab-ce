@@ -19,7 +19,7 @@
 default['yum']['gitlab-ce']['repositoryid'] = 'gitlab_gitlab-ce'
 default['yum']['gitlab-ce']['description'] = 'Gitlab CE'
 default['yum']['gitlab-ce']['baseurl'] = 'https://packages.gitlab.com/gitlab/gitlab-ce/el/$releasever/$basearch'
-default['yum']['gitlab-ce']['gpgcheck'] = true
+default['yum']['gitlab-ce']['gpgcheck'] = false 
 default['yum']['gitlab-ce']['enabled'] = true
 default['yum']['gitlab-ce']['gpgkey'] = 'https://packages.gitlab.com/gpg.key'
 default['yum']['gitlab-ce']['sslverify'] = true

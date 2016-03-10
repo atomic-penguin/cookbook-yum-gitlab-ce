@@ -6,6 +6,6 @@ description 'Installs/Configures yum-gitlab-ce'
 long_description 'Installs/Configures yum-gitlab-ce'
 source_url 'https://github.com/atomic-penguin/cookbook-yum-gitlab-ce'
 issues_url 'https://github.com/atomic-penguin/cookbook-yum-gitlab-ce/issues'
-version '0.1.0'
+version '0.1.1'
 
 depends 'yum'
